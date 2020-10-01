@@ -30,4 +30,21 @@ function listening(){
     console.log(`running on localhost: ${port}`);
 };
 
-app.get('/', )
+
+//Add GET route to return projectData
+app.get('/world', (req, res) => {
+    res.send('hello World');
+    console.log('hello world was sent')
+})
+
+//Add POST route to accept projectData
+app.psot('/addData', addData);
+
+function addData(req, res) {
+    newData = {
+        temperature: req.body.temperature,
+        date: req.body.date,
+        userRes: req.body.userRes
+    }
+    
+}
