@@ -1,0 +1,8 @@
+#Ignore Mac system files
+.DS_store
+
+#Ignore the config.js file containing the weather api key
+config.js
+
+#Ignore the node_modules
+node_modules/
