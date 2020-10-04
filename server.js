@@ -38,7 +38,7 @@ app.get('/world', (req, res) => {
 })
 
 //Add POST route to accept projectData
-app.psot('/addData', addData);
+app.post('/addData', addData);
 
 function addData(req, res) {
     newData = {
@@ -46,5 +46,7 @@ function addData(req, res) {
         date: req.body.date,
         userRes: req.body.userRes
     }
+    projectData.push(newData);
+    console.log(projectData);
     
 }
