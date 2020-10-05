@@ -41,12 +41,13 @@ app.get('/world', (req, res) => {
 app.post('/addData', addData);
 
 function addData(req, res) {
-    newData = {
+    let newData = {
         temperature: req.body.temperature,
         date: req.body.date,
         userRes: req.body.userRes
     }
     projectData.push(newData);
-    console.log(projectData);
+    console.log("newData", newData);
+    console.log("Data added", projectData);
     
 }
