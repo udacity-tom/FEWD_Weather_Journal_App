@@ -39,6 +39,7 @@ app.get('/world', (req, res) => {
 
 //Add POST route to accept projectData
 app.post('/addData', addData);
+app.post('/testData', testData);
 
 function addData(req, res) {
     let newData = {
@@ -50,4 +51,15 @@ function addData(req, res) {
     console.log("newData", newData);
     console.log("Data added", projectData);
     
+}
+
+function testData(req, res) {
+    let newData = {
+        zipCode: req.body.zipCode, 
+        cityName: req.body.cityName, 
+        myInput: req.body.myInput
+    }
+    projectData.push(newData);
+    console.log('New data', newData);
+    console.log('project data is: ', projectData);
 }
