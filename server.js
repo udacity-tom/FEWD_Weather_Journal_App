@@ -1,4 +1,3 @@
-
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
 
@@ -21,7 +20,11 @@ app.use(express.static('website'));
 
 // Setup Server
 
-const port = 3000;
+let port = 3000; //setting default port number
+    //Adding command line arguments for port determination
+if(typeof process.argv[2] != 'undefined'){
+    port = process.argv[2];
+}
 
 const server = app.listen(port, listening);
 
