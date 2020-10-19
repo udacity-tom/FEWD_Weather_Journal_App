@@ -23,9 +23,8 @@ Add some dependencies:
 To get the server on node running:
 `node server.js`
 The server will respond with a console.log of : 
-```server running
-running on localhost: 3000
-```
+`server running
+running on localhost: 3000`
 Where the default port is '3000'.
 
 To change the defaul port, simply add the port number after the command: 
