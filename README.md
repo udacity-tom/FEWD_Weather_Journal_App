@@ -14,9 +14,13 @@ First unpack the necessary files and structure as per the Github directory struc
 Let's setup the environment. 
 
 First install node `npm install node`
+
 Add some dependencies: 
+
 `npm install cors`
+
 `npm install body-parser`
+
 
 
 ## Getting the server running
