@@ -11,9 +11,11 @@ Front End Web Developer Nanodegree Weather Journal App Project
 
 ## Environment Setup & What's Installed
 First unpack the necessary files and structure as per the Github directory structure
+
 Let's setup the environment. 
 
-First install node `npm install node`
+First install node
+`npm install node`
 
 Add some dependencies: 
 
