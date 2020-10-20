@@ -1,23 +1,23 @@
+// import config from './config.js';
 // const { response } = require("express");
 
+// const API_KEY = `&appid=${config.API_KEY}`;
 
-
-
+const API_KEY = '';
 /* Global Variables */
-let baseURL = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={YOUR API KEY}'
+let baseURL = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={}'
 
 // Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 
 //Setup function to perform button tasks.
 function buttonAction ()  {
-    /*tasks to include
+    /*TODO: 
+    tasks to include
         +must collect user input
             +add date
         +must access weather API
-            +collect data, process it, add schnick-snacks?
+            +collect data, process it
         +must post data to server
             +server must 
             +add to projectData array
@@ -31,15 +31,54 @@ function buttonAction ()  {
     console.log("from button action Zip: ", zipCode, "feelings: ", myInput, "city:", cityName);
 
     //this will be postdata currently using /testData in development before setting up API call
-    sendToServer (zipCode, myInput, cityName);
-
+    //sendToServer (zipCode, myInput, cityName);
+    const weatherData = getWeather('zipCode');
+    console.log("weatherdata", weatherData);
+    const {temperature} = weatherData;
+    const date = getDate();
+    addToProjectData(date, temperature, content);
 }
 
-function getWeather ()
+    
+//get weatherapi data for zipCode/cityname
+function getWeather(zipCode, cityName) {
+    const weatherdata = async (baseURL) => {
+        const res = await fetch(baseURL)
+        try {
+            const data = await res.json();
+            console.log(data);
+            return data;
+
+        } catch(error) {
+            console.log("error",error);
+        }
+    }
+}
+
+function getDate() {
+    let d = new Date();
+    console.log("date in UU format",d);
+    let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+    console.log("currentdate",newDate);
+    return newDate
+}
+
+
+
+function getFromServer() {
+    //gets current journal entry from server
+    
+}
+
+function addToProjectData (date, temperature, content) {
+    console.log("from button action date: ", zipCode, "feelings: ", myInput, "city:", cityName);
+    postData('/data', {date, temperature, content})
+}
+
 
 function sendToServer (zipCode, myInput, cityName) {
     console.log("Form details webside", zipCode, cityName, myInput);
-    postData('/testData', {zipCode, cityName, myInput});
+    postData('/newData', {zipCode, cityName, myInput});
     
 }
 
@@ -69,7 +108,7 @@ http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={YOUR API KEY}
 // console.log("App.js");
 //function to POST data
 const postData = async (url = '', data = {}) =>{
-    console.log("From client app.js:", data);
+    console.log("From client app.js, postData async:", data);
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -89,7 +128,19 @@ const postData = async (url = '', data = {}) =>{
             console.log("error", error);
         }
 }
+// GETs data from server
+// const getData = async (url = ''. data = {}) => {
+//     console.log("From get data function app.js, url", url);
+//     const response = await fetch(url, {
+//         method: 'GET',
+//         mode: 'cors',
+//         credentials: 'same-origin',
+//         header: {
+//             'Content-Type': 'application/json',
+//         },
+//         body:
 
-
+//     })
+// }
 
 // postData('/addData', {temperature: 42, date: "today", userRes:"My Response"}); //insert data collected from form

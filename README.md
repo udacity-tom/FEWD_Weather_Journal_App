@@ -42,14 +42,14 @@ To change the defaul port, simply add the port number after the command:
 
 ## Technologies Used
 - Javascript
-- async stuff
-- Node stuff
-- HTML/CSS stuff (optional)
+- async 
+- Node 
+- HTML/CSS  (optional)
 
 
 
 ## My Solution
-My solution is hosted here [github.something](https://The actual link)
+My solution is hosted here [heruku.something](https://)
 
 
 ## About Udacity's Front End Developer Nanodegree
