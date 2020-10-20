@@ -27,7 +27,9 @@ Add some dependencies:
 
 ## Getting the server running
 To get the server on node running:
+
 `node server.js`
+
 The server will respond with a console.log of : 
 ```
 server running

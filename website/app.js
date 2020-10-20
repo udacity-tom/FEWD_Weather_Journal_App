@@ -14,25 +14,26 @@ let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 const zipCode = document.getElementById('zip').value;
 const myInput = document.getElementById('feelings').value;
 const cityName = document.getElementById('city').value;
-
+console.log("Zip, feelings, city", zipCode, myInput, cityName);
 // console.log("Form details", zip, city, feelings);
+const button = document.getElementById('generate');
+button.addEventListener('click', () => {
+    console.log("Form details", zipCode, cityName, myInput);
+    postData('/testData', {zipCode, cityName, myInput});
+})
+
 
 
 /*
 API Call
 http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={YOUR API KEY}
-
-
 */
-
 // const fetchWeather = () {
-
 // }
 
 
-
 // console.log("App.js");
-
+//function to POST data
 const postData = async (url = '', data = {}) =>{
     console.log("From client app.js:", data);
     const response = await fetch(url, {
@@ -55,10 +56,6 @@ const postData = async (url = '', data = {}) =>{
         }
 }
 
-const button = document.getElementById('generate');
-button.addEventListener('click', () => {
-    console.log("Form details", zipCode, cityName, myInput);
-    postData('/testData', {zipCode, cityName, myInput});
-})
+
 
 // postData('/addData', {temperature: 42, date: "today", userRes:"My Response"}); //insert data collected from form

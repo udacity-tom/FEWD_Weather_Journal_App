@@ -62,7 +62,7 @@ function testData(req, res) {
         cityName: req.body.cityName, 
         myInput: req.body.myInput
     }
-    projectData.push(newData);
+    //projectData.push(newData);
     console.log('New data', newData);
     console.log('project data is: ', projectData);
 }
