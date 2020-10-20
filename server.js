@@ -47,26 +47,36 @@ app.post('/addData', addData);
 app.post('/testData', testData);
 
 function addData(req, res) {
+    const newData = {date, temperature, content }
+
     let newData = {
         temperature: req.body.temperature,
         date: req.body.date,
-        userRes: req.body.userRes
+        content: req.body.userRes
     }
     // projectData.push(newData);
-    projectData = Object.assign(newData);
+    
     console.log("newData", newData);
     console.log("Data added", projectData);
     
 }
 
 function testData(req, res) {
-    let newData = {
-        zipCode: req.body.zipCode, 
-        cityName: req.body.cityName, 
-        myInput: req.body.myInput
-    }
-    projectData.push(newData);
+    // let newData = {
+    //     zipCode: req.body.zipCode, 
+    //     cityName: req.body.cityName, 
+    //     myInput: req.body.myInput
+    // }
+
+    const newData = {zipCode, cityName, myInput} = req.body;
+
+    // projectData.push({newData});
+    // {projectData...} = newData;
+    // console.log("projectData is", )
+    // projectData = {...projectData, newData};
+    // projectData = Object.assign(projectData, {zipCode, cityName, myInput});
+    projectData = Object.assign({zipCode, cityName, myInput});
     // projectData.push(req.body);
-    console.log('New data', newData);
+    console.log('New data',  {zipCode, cityName, myInput});
     console.log('project data is: ', projectData);
 }

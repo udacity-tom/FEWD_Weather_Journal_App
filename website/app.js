@@ -35,6 +35,8 @@ function buttonAction ()  {
 
 }
 
+function getWeather ()
+
 function sendToServer (zipCode, myInput, cityName) {
     console.log("Form details webside", zipCode, cityName, myInput);
     postData('/testData', {zipCode, cityName, myInput});
