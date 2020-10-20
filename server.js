@@ -52,7 +52,8 @@ function addData(req, res) {
         date: req.body.date,
         userRes: req.body.userRes
     }
-    projectData.push(newData);
+    // projectData.push(newData);
+    projectData = Object.assign(newData);
     console.log("newData", newData);
     console.log("Data added", projectData);
     
@@ -65,6 +66,7 @@ function testData(req, res) {
         myInput: req.body.myInput
     }
     projectData.push(newData);
+    // projectData.push(req.body);
     console.log('New data', newData);
     console.log('project data is: ', projectData);
 }

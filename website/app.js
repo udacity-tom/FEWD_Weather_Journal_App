@@ -28,7 +28,7 @@ function buttonAction ()  {
     const zipCode = document.getElementById('zip').value;
     const myInput = document.getElementById('feelings').value;
     const cityName = document.getElementById('city').value;
-    console.log("Zip: ", zipCode, "feelings: ", myInput, "city:", cityName);
+    console.log("from button action Zip: ", zipCode, "feelings: ", myInput, "city:", cityName);
 
     //this will be postdata currently using /testData in development before setting up API call
     sendToServer (zipCode, myInput, cityName);
@@ -36,7 +36,7 @@ function buttonAction ()  {
 }
 
 function sendToServer (zipCode, myInput, cityName) {
-    console.log("Form details", zipCode, cityName, myInput);
+    console.log("Form details webside", zipCode, cityName, myInput);
     postData('/testData', {zipCode, cityName, myInput});
     
 }
