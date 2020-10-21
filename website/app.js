@@ -1,12 +1,13 @@
-// import config from './config.js';
+import config from './config.js';
 // const { response } = require("express");
-
+const APIKEY = config.API_KEY;
 // const API_KEY = `&appid=${config.API_KEY}`;
 
 const API_KEY = '';
 /* Global Variables */
-let baseURL = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={}'
-
+let baseURL = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=';
+console.log("baseUrl", baseURL+API_KEY);
+let URL = baseURL+API_KEY;
 // Create a new date instance dynamically with JS
 
 
@@ -32,28 +33,47 @@ function buttonAction ()  {
 
     //this will be postdata currently using /testData in development before setting up API call
     //sendToServer (zipCode, myInput, cityName);
-    const weatherData = getWeather('zipCode');
-    console.log("weatherdata", weatherData);
-    const {temperature} = weatherData;
+    // const weatherData = getWeather();
+    const weatherData = getWeath();
+    // console.log("weatherdata", weatherData);
+    // const {temperature} = weatherData;
     const date = getDate();
-    addToProjectData(date, temperature, content);
+    // addToProjectData(date, temperature, content);
 }
 
     
 //get weatherapi data for zipCode/cityname
-function getWeather(zipCode, cityName) {
-    const weatherdata = async (baseURL) => {
-        const res = await fetch(baseURL)
+function getWeather() {
+    const weatherdata = async (URL) => {
+        console.log("URL from getWeather", URL);
+        const res = await fetch(URL)
         try {
             const data = await res.json();
             console.log(data);
             return data;
 
-        } catch(error) {
+        } 
+        catch(error) {
             console.log("error",error);
         }
     }
 }
+
+// function getWeath() {
+//     const weatherdata =  async(URL) => {
+//         console.log("URL from getWeather", URL);
+//         const res = await fetch(URL);
+//         console.log(res);
+//     }
+// }
+
+function getWeath() {
+    fetch(URL)
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch( err => console.log("NOOOOO"));
+}
+
 
 function getDate() {
     let d = new Date();
