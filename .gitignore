@@ -6,6 +6,7 @@ config.js
 
 misc\ before\ rewriting\ the\ core\ API\ functions.js
 misc_currently_debugging.js
+Current\ appjs\ before\ cleanup.js
 
 #Ignore the node_modules
 node_modules/

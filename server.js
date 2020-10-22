@@ -44,24 +44,26 @@ app.get('/data', (req, res) => {
 
 //Add POST route to accept projectData
 app.post('/addData', addData);
-app.post('/testData', testData);
+// app.post('/testData', testData);
 
 function addData(req, res) {
     const newData = {date, temperature, content } = req.body;
-
-    projectData = Object.assign(newData);
-    console.log("newData recieved on Server from Client", newData);
-    console.log("Data added to Endpoint", projectData);
+    Object.assign(projectData, newData);
+    
+    // projectData = (projectData Object.assign(newData));
+    // projectData.push(newData);
+    console.log("newData recieved on Server Endpoint from Client", newData);
+    console.log("Current data in projectData", projectData);
     
 }
 
-function testData(req, res) {
-
-    const newData = {zipCode, cityName, myInput} = req.body;
-    projectData = Object.assign(newData);
-    console.log('New data recieved on Sever from client',  {zipCode, cityName, myInput});
-    console.log('project data has current value ', projectData);
-}
+// function testData(req, res) {
+//     const newData = {zipCode, cityName, myInput} = req.body;
+//     // projectData = projectData + (...Object.assign(newData);
+//     projectData = (projectData + Object.assign(newData));
+//     console.log('New data recieved on Sever from client',  {zipCode, cityName, myInput});
+//     console.log('project data has current value ', projectData);
+// }
 
 
 
