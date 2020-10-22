@@ -46,6 +46,10 @@ To change the defaul port, simply add the port number after the command:
 - Node 
 - HTML/CSS  (optional)
 
+## External Library
+The country-region-selector by https://github.com/country-regions/country-region-selector
+allows simple integration, future region extensability, simple, a clean user interface.
+The MIT licence terms are included in the library directory.
 
 
 ## My Solution

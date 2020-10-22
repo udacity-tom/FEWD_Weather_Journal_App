@@ -3,11 +3,7 @@
 // const APIKEY = config.API_KEY;
 // const API_KEY = `&appid=${config.API_KEY}`;
 
-const API_KEY = '';
-/* Global Variables */
-let baseURL = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=';
-console.log("baseUrl", baseURL+API_KEY);
-let URL = baseURL+API_KEY;
+
 // Create a new date instance dynamically with JS
 
 
@@ -15,10 +11,10 @@ let URL = baseURL+API_KEY;
 function buttonAction()  {
     /*TODO: 
     tasks to include
-        +must collect user input
-            +add date
-        +must access weather API
-            +collect data, process it
+        +DONEmust collect user input
+            +DONE(mostly)add date
+        +DONEmust access weather API
+            +DOINGcollect data, process it
         +must post data to server
             +server must 
             +add to projectData array
@@ -29,38 +25,24 @@ function buttonAction()  {
     const zipCode = document.getElementById('zip').value;
     const myInput = document.getElementById('feelings').value;
     const cityName = document.getElementById('city').value;
-    console.log("from button action Zip: ", zipCode, "feelings: ", myInput, "city:", cityName);
-
-    //this will be postdata currently using /testData in development before setting up API call
-    //sendToServer (zipCode, myInput, cityName);
-    getWeather(URL).then(function(data) {
-        const currentTemp = kelvToCentig(data.main.temp);
-        console.log("temperature from API", currentTemp);
-        }
-    );
-    // weatherData.then(console.log("WeatherDate", weatherData));
-    // const weatherData = getWeath();
-    // setTimeout(1000);
-    // weatherData.then( () => console.log("WeatherData",weatherData));
-    // Promise.resolve(weatherData).then(console.log("WeatherData",weatherData));
+    const countryID = document.getElementById('country-select').value;
+    // console.log("country select value",countryID)
+    console.log("from button action Zip: ", zipCode, "feelings: ", myInput, "city:", cityName, "country:", countryID);
     
-    // weatherData.then( () => {
-    //     const currentTemp = kelvToCentig(weatherData.main.temp);
-    // })
+    //Checks that at least a zip code or a city name are entered
+    if(!zipCode && !cityName){
+        alert('You must enter a City or a Zip!');
+    } else {
+        getWeather(getURL(cityName, zipCode, countryID)).then(function(data) {
+            const currentTemp = kelvToCentig(data.main.temp);
+            console.log("temperature from API", currentTemp);
+            }
+        )};
     
-    
-    
-    // let currentTemp;
-    // currentTemp.then( () => currentTemp =kelvToCentig(weatherData.main.temp));
-    // console.log("temperature from API", currentTemp);
-    // console.log("weatherdata", weatherData);
-    // const {temperature} = weatherData;
     const date = getDate();
-    // addToProjectData(date, temperature, content);
 }
 
-    
-//get weatherapi data for zipCode/cityname
+//gets weatherapi data for zipCode/cityname
 const getWeather = async (URL) => {
         console.log("URL from getWeather", URL);
         const res = await fetch(URL)
@@ -74,41 +56,33 @@ const getWeather = async (URL) => {
         }
     }
 
-
-// function getWeath() {
-//     const weatherdata =  async(URL) => {
-//         console.log("URL from getWeather", URL);
-//         const res = await fetch(URL);
-//         console.log(res);
-//     }
-// }
-
-// async function getWeath() {
-//     let res =  fetch(URL)
-//         .then(res => res.json())
-//         // .then(res => weatherData = res)
-//         .then(res => console.log(res))
-//         .catch( err => console.log("NOOOOO, error!"));
-//         return res;
-//         // console.log("WeatherData",weatherData);
-//         // const temperature = kelvToCentig(weatherData.main.temp);
-//         // console.log("temperature from API",temperature);
-// }
-
+//converts Kelvin temperature to Centegrade
 function kelvToCentig(temperature){
     return temperature-274.15;
 }
 
+//creates URL in format required for API
+function getURL(cityName, zipCode, countryID) {
+    const API_KEY = '';
+    const prefixURL = 'http://api.openweathermap.org/data/2.5/weather?';
+    const suffixURL = '&appid=';
+    let searchParams;
+    if(cityName && zipCode || cityName)
+        searchParams = "q="+cityName+","+countryID; //search on city name if zip and city are given or city only 
+     else if(zipCode)
+        searchParams = "zip="+zipCode+","+countryID;//search on zip code given only
+    console.log("new baseUrl", prefixURL+searchParams+suffixURL+API_KEY);
+    return prefixURL+searchParams+suffixURL+API_KEY;
+    }
 
+//gets date in European format
 function getDate() {
     let d = new Date();
     console.log("date in UU format",d);
-    let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+    let newDate = d.getDate()+'.'+ d.getMonth()+'.'+ d.getFullYear();
     console.log("currentdate",newDate);
     return newDate
 }
-
-
 
 function getFromServer() {
     //gets current journal entry from server
