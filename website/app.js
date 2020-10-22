@@ -1,6 +1,6 @@
-import config from './config.js';
+// import config from './config.js';
 // const { response } = require("express");
-const APIKEY = config.API_KEY;
+// const APIKEY = config.API_KEY;
 // const API_KEY = `&appid=${config.API_KEY}`;
 
 const API_KEY = '';
@@ -12,7 +12,7 @@ let URL = baseURL+API_KEY;
 
 
 //Setup function to perform button tasks.
-function buttonAction ()  {
+function buttonAction()  {
     /*TODO: 
     tasks to include
         +must collect user input
@@ -33,8 +33,26 @@ function buttonAction ()  {
 
     //this will be postdata currently using /testData in development before setting up API call
     //sendToServer (zipCode, myInput, cityName);
-    // const weatherData = getWeather();
-    const weatherData = getWeath();
+    getWeather(URL).then(function(data) {
+        const currentTemp = kelvToCentig(data.main.temp);
+        console.log("temperature from API", currentTemp);
+        }
+    );
+    // weatherData.then(console.log("WeatherDate", weatherData));
+    // const weatherData = getWeath();
+    // setTimeout(1000);
+    // weatherData.then( () => console.log("WeatherData",weatherData));
+    // Promise.resolve(weatherData).then(console.log("WeatherData",weatherData));
+    
+    // weatherData.then( () => {
+    //     const currentTemp = kelvToCentig(weatherData.main.temp);
+    // })
+    
+    
+    
+    // let currentTemp;
+    // currentTemp.then( () => currentTemp =kelvToCentig(weatherData.main.temp));
+    // console.log("temperature from API", currentTemp);
     // console.log("weatherdata", weatherData);
     // const {temperature} = weatherData;
     const date = getDate();
@@ -43,8 +61,7 @@ function buttonAction ()  {
 
     
 //get weatherapi data for zipCode/cityname
-function getWeather() {
-    const weatherdata = async (URL) => {
+const getWeather = async (URL) => {
         console.log("URL from getWeather", URL);
         const res = await fetch(URL)
         try {
@@ -52,12 +69,11 @@ function getWeather() {
             console.log(data);
             return data;
 
-        } 
-        catch(error) {
+        } catch(error) {
             console.log("error",error);
         }
     }
-}
+
 
 // function getWeath() {
 //     const weatherdata =  async(URL) => {
@@ -67,11 +83,20 @@ function getWeather() {
 //     }
 // }
 
-function getWeath() {
-    fetch(URL)
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch( err => console.log("NOOOOO"));
+// async function getWeath() {
+//     let res =  fetch(URL)
+//         .then(res => res.json())
+//         // .then(res => weatherData = res)
+//         .then(res => console.log(res))
+//         .catch( err => console.log("NOOOOO, error!"));
+//         return res;
+//         // console.log("WeatherData",weatherData);
+//         // const temperature = kelvToCentig(weatherData.main.temp);
+//         // console.log("temperature from API",temperature);
+// }
+
+function kelvToCentig(temperature){
+    return temperature-274.15;
 }
 
 
