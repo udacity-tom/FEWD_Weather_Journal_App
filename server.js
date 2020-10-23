@@ -17,11 +17,9 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
-
 // Setup Server
-
 let port = 3000; //setting default port number
-    //Adding command line arguments for port determination
+    //Adding command line arguments for port number determination
 if(typeof process.argv[2] != 'undefined'){
     port = process.argv[2];
 }
@@ -33,58 +31,18 @@ function listening(){
     console.log(`running on localhost: ${port}`);
 };
 
-
-//Add GET route to return projectData
-//Currently logs to server and sends back to app
-//used for setting up server<->client interaction
+//Adds GET route to return projectData
 app.get('/data', (req, res) => {
     res.send(projectData);
-    console.log('Project Data was sent', projectData);
+    console.log('Project Data was sent to client', projectData);
 })
 
 //Add POST route to accept projectData
 app.post('/addData', addData);
-// app.post('/testData', testData);
 
+//Callback function for adding data to JS Object projectData
 function addData(req, res) {
     const newData = {date, temperature, content } = req.body;
     Object.assign(projectData, newData);
-    
-    // projectData = (projectData Object.assign(newData));
-    // projectData.push(newData);
-    console.log("newData recieved on Server Endpoint from Client", newData);
-    console.log("Current data in projectData", projectData);
-    
+    console.log(`New data recieved on Server Endpoint from Client on port ${port}`, newData);
 }
-
-// function testData(req, res) {
-//     const newData = {zipCode, cityName, myInput} = req.body;
-//     // projectData = projectData + (...Object.assign(newData);
-//     projectData = (projectData + Object.assign(newData));
-//     console.log('New data recieved on Sever from client',  {zipCode, cityName, myInput});
-//     console.log('project data has current value ', projectData);
-// }
-
-
-
-
-    // let newData = {
-    //     temperature: req.body.temperature,
-    //     date: req.body.date,
-    //     content: req.body.userRes
-    // }
-    // projectData.push(newData);  
-
-
-    // let newData = {
-    //     zipCode: req.body.zipCode, 
-    //     cityName: req.body.cityName, 
-    //     myInput: req.body.myInput
-    // }
-
-   // projectData.push({newData});
-    // {projectData...} = newData;
-    // console.log("projectData is", )
-    // projectData = {...projectData, newData};
-    // projectData = Object.assign(projectData, {zipCode, cityName, myInput});
-    // projectData = Object.assign({zipCode, cityName, myInput});

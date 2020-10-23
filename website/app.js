@@ -1,6 +1,5 @@
-//Setup function to perform button tasks.
+//function to perform tasks on button click.
 function buttonAction()  {
- 
     //collect user input
     const zipCode = document.getElementById('zip').value;
     const myInput = document.getElementById('feelings').value;
@@ -14,17 +13,11 @@ function buttonAction()  {
             .then(function(data) {
                 addToProjectData(getDate(), kelvToCentig(data.main.temp), myInput)})
                 .then(function(){
-                // const dataFromServer = getFromServer();
                 const serverData = dataFromServer();
-                console.log("In buttonAction ", serverData);
                 return serverData;
             }).then(function(serverData){
                 updateDOM(serverData)
-                
             });
-            
-                
-            
         };
 }
 
@@ -33,16 +26,10 @@ const getWeather = async (URL) => {
         const res = await fetch(URL)
         try {
             const data = await res.json();
-            console.log(data);
             return data;
         } catch(error) {
             console.log("error",error);
         }
-    }
-
-//converts Kelvin temperature to Centegrade
-function kelvToCentig(temperature){
-    return Math.round(temperature-274.15);
 }
 
 //creates URL in format required for API
@@ -56,51 +43,50 @@ function getURL(cityName, zipCode, countryID) {
      else if(zipCode)
         searchParams = "zip="+zipCode+","+countryID;//search on zip code given only
     return prefixURL+searchParams+suffixURL+API_KEY;
+}
+
+//gets current journal entry from server
+const dataFromServer = async () => {
+    const res = await fetch('/data');
+    try {
+        const data = await res.json();
+        return data;
+    } catch(error) {
+        console.log("error", error);
     }
+    return dataFromServer;
+}
+
+//Updates DOM with the serverData values
+function updateDOM(serverData) {
+    document.getElementById('date').innerHTML = serverData.date;
+    document.getElementById('temp').innerHTML = serverData.temperature+" degrees Centigrade";
+    document.getElementById('content').innerHTML = serverData.content;
+}
+
+//sub-function to submit data to server endpoint
+function addToProjectData(date, temperature, content) {
+    postData('/addData', {date, temperature, content});
+}
+
+//Sets up button with click event listener
+const button = document.getElementById('generate');
+button.addEventListener('click',buttonAction);
 
 //gets date in European format
 function getDate() {
     let d = new Date();
     let newDate = d.getDate()+'.'+ d.getMonth()+'.'+ d.getFullYear();
-    return newDate
+    return newDate;
 }
 
-// function getFromServer() {
-    //gets current journal entry from server
-    const dataFromServer = async () => {
-        const res = await fetch('/data');
-        // console.log("getfromserver",res);
-        try {
-            const data = await res.json();
-            console.log("data from server",data);
-            return data;
-        } catch(error) {
-            console.log("error", error);
-        }
-        return dataFromServer;
-    }
-
-    // }
-    
-// }
-
-function updateDOM(serverData) {
-    console.log("Serverdata from updateDOM!!!", serverData);
+//converts Kelvin temperature to Centegrade
+function kelvToCentig(temperature){
+    return Math.round(temperature-274.15);
 }
 
-function addToProjectData (date, temperature, content) {
-    postData('/addData', {date, temperature, content});
-    // respCode = postData('/addData', {date, temperature, content});
-    // console.log("Response Code from addtoproject",respCode);
-    // return respCode;
-}
-
-const button = document.getElementById('generate');
-button.addEventListener('click',buttonAction);
-
-//function to POST data
+//function to POST data to server app
 const postData = async (url = '', data = {}) =>{
-    console.log("From client postdata function, postData async:", data);
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -110,11 +96,8 @@ const postData = async (url = '', data = {}) =>{
         },
         body: JSON.stringify(data),
         });
-        console.log(JSON.stringify(data));
-        console.log(data);
         try {
             const newData = await response.json();
-            console.log("client app.js/POST", newData);
             return newData;
         } catch(error) {
             console.log("error", error);
