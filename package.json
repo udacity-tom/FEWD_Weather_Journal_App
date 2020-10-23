@@ -11,11 +11,12 @@
     "type": "git",
     "url": "git@github.com-udacity:udacity-tom/FEWD_Weather_Journal_App.git"
   },
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
-},
-"dependencies": {
-  "express": "*",
-  "body-parser": "*"
 }
+
