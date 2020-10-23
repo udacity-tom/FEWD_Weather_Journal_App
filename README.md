@@ -4,11 +4,7 @@ Front End Web Developer Nanodegree Weather Journal App Project
 
 ## Introduction/Usage 
 
-This project requried the creation of an asynchronus web app that uses the 
-
-[OpenWeather](https://openweathermap.org/)
-
-API for collecting weather data and then dynamically updateing the UI of a weather journal.
+This project requried the creation of an asynchronus web app that uses the [OpenWeather](https://openweathermap.org/) API for collecting weather data and then dynamically updateing the UI of a weather journal.
 
 
 At the UI the user can type in a ZIP code (postcodes) or a city name, or both and click on the 'Generate' button.
