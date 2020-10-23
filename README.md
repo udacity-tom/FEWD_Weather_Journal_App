@@ -4,7 +4,7 @@ Front End Web Developer Nanodegree Weather Journal App Project
 
 ## Introduction/Usage 
 
-This project requried the creation of an asynchronus web app that uses the [OpenWeather](https://openweathermap.org/) API for collecting weather data and then dynamically updateing the UI of a weather journal.
+This project requried the creation of an asynchronus web app that uses the [OpenWeather](https://openweathermap.org/) API for collecting weather data and then dynamically updating the UI of a weather journal.
 
 
 At the UI the user can type in a ZIP code (postcodes) or a city name, or both and click on the 'Generate' button.
@@ -30,7 +30,7 @@ Various files are installed along with a basic website for the UI.
 
 ## External Library
 The country-region-selector by https://github.com/country-regions/country-region-selector
-allows simple integration, future region extensability, simple, a clean user interface.
+allows simple integration, future region extensibility, simple, a clean user interface.
 The MIT licence terms are included in the library directory.
 
 
@@ -44,9 +44,9 @@ The server will respond with a console.log of :
 server running
 running on localhost: 3000
 ```
-Where the default port '3000' has been selected.
+Where the default port '3000' has been used.
 
-To change the defaul port, simply add the port number after the command: 
+To change the default port, simply add the port number after the command: 
 `node server.js 5000`
 
 On the client side accessing (in a local dev environment)
@@ -59,7 +59,7 @@ opens the UI and allows the user to input city names or Zip codes
 ## Technologies Used
 - Javascript (async, fetch, wait, etc)
 - Node (For server and client)
-- HTML/CSS (For a UI)
+- HTML/CSS (For UI)
 
 
 
