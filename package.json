@@ -1,0 +1,17 @@
+{
+  "name": "FEWD_Weather_Journal_App",
+  "version": "1.0.0",
+  "description": "Front End Web Developer Nanodegree Weather Journal App Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-udacity:udacity-tom/FEWD_Weather_Journal_App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

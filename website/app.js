@@ -34,7 +34,7 @@ const getWeather = async (URL) => {
 
 //creates URL in format required for API
 function getURL(cityName, zipCode, countryID) {
-    const API_KEY = '';
+    const API_KEY = '70f99e3b80c8ae7f96d9eda12341569f';
     const prefixURL = 'http://api.openweathermap.org/data/2.5/weather?';
     const suffixURL = '&appid=';
     let searchParams;
