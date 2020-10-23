@@ -4,13 +4,13 @@ Front End Web Developer Nanodegree Weather Journal App Project
 
 ## Introduction/Usage 
 
-This project requried the creation of an asynchronus web app that uses the [OpenWeather](https://openweathermap.org/) API for collecting weather data and then dynamically updating the UI of a weather journal.
+This project required the creation of an asynchronous web app that uses the [OpenWeather](https://openweathermap.org/) API for collecting weather data and then dynamically updating the UI of a weather journal.
 
 
 At the UI the user can type in a ZIP code (postcodes) or a city name, or both and click on the 'Generate' button.
 The URL for the API is dynamically created and the current weather data is collected from the API using `fetch`.
 
-The data is then stored on an endpoint running on a Node local server. An additional `fetch` command retrieves the data from the server endpoing and then dynamically updates the DOM with the information.
+The data is then stored on an endpoint running on a Node local server. An additional `fetch` command retrieves the data from the server endpoint and then dynamically updates the DOM with the information.
 
 Although simplistic in operation, the various API and server calls have to be coded appropriately to prevent the code from breaking as a consequence of timing calls to various external systems.
 
@@ -26,7 +26,7 @@ Add some dependencies:
 
 `npm install body-parser`
 
-Various files are installed along with a basic website for the UI. 
+Various files (see above) are installed along with a basic website for the UI. 
 
 ## External Library
 The country-region-selector by https://github.com/country-regions/country-region-selector
